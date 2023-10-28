@@ -14,8 +14,8 @@ const WeatherCard = ({ weather, coord, grados }) => {
       <div className={clasediv}>
         <p className="text-2xl font-bold "> {weather.name}, {weather.sys?.country}</p>
         <ul className={claseNameul}>
-          <li>Latitud: {coord.lat}</li>
-          <li>Longitud: {coord.lon}</li>
+          <li> {coord.lat == 0 ? "" : "Latitud: "+coord.lat}</li>
+          <li>{coord.lon == 0 ? "" : "Longitud: "+coord.lon}</li>
         </ul>
 
         <ul className={claseNameul}>
@@ -32,7 +32,7 @@ const WeatherCard = ({ weather, coord, grados }) => {
         <div className="flex justify-center pt-4">
           <button
             onClick={botonMostrar}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+            className="m-4 p-6 rounded-md bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
           >
             {mostrar ? "Change To °F" : "Change To °C"}
           </button>
