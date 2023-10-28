@@ -19,19 +19,24 @@ function App() {
     lon: coordenadas.coords?.longitude ? coordenadas.coords?.longitude : 0,
   };
   const imagenes = [
-    './lluvioso.png',
-    './nublado.png',
-    './soleado.png',
+    './lluvioso.png',//0
+    './nublado.png',//1
+    './soleado.png',//2
+    './clouds-449822_1920.jpg'//3
  ]
 
   const success = (position) => {
     setCoordenadas(position);
   };
 
+  const error = () => {
+    setHasError(true);
+  }
+
   //Evitar ciclos infinitos
   //Obtenemos las coordenadas con la api del navegador
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
+    navigator.geolocation.getCurrentPosition(success, error);
   }, []);
 
   //Obtenemos el clima
@@ -64,9 +69,10 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center p-16 text-white" style={{ backgroundImage: `url('${imagenes[0]}')` }}>
+      <div className="flex justify-center items-center p-16 text-white principal" style={{ backgroundImage: `url('${imagenes[3]}')` }}>
         <div className="container mx-auto flex justify-center items-center flex-col ">
           <h1 className="text-4xl font-bold pb-4">Weather App</h1>
+          <img src={`https://openweathermap.org/img/wn/${weather?.weather?.[0]?.icon}@2x.png`} alt="" />
           {isLoading ? (
             <div className="p-4 bg-blue-100 rounded-lg shadow-md max-w-sm">
               <p>Cargando...</p>
