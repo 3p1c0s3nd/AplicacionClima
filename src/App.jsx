@@ -68,6 +68,10 @@ function App() {
     event.preventDefault(); //previene que la pagina se vuelva a cargar
     const city = ciudad.current.value;
     setErroPermitir(false);
+    if(city === ''){
+      alert("Por favor, ingrese una ciudad válida");
+      return;
+    }
     const urlapi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}`;
     axios
       .get(urlapi)
